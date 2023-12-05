@@ -1,43 +1,48 @@
-
 package db;
-
-import java.sql.Connection;
+/**
+ * @author sebba
+ */
 import java.sql.Statement;
 import java.sql.ResultSet;
+import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-/**
- *
- * @author antho
- */
 public class Conexion {
-    
     private Connection conn;
-    private Statement sen;
+    private Statement stat;
+
+    public Conexion() {
+    }
     
+
     public Conexion(String db) throws SQLException {
         String url = "jdbc:mysql://localhost/" + db + "?user=root&password=";
         System.out.println("[*] " + url);
         conn = DriverManager.getConnection(url);
+        stat = conn.createStatement();
     }
-    
-    public Connection getConnection(){
-        return conn;
+
+    public void ejecutarQuery(String sql) throws SQLException {
+        stat = conn.createStatement();
+        stat.executeUpdate(sql);
+        stat.close();
     }
-    
-    public void ejecutar(String query)throws SQLException{
-        sen = conn.createStatement();
-        sen.executeUpdate(query);
-        sen.close();
-    }
-    
-    public ResultSet select (String query)throws SQLException{
-        sen = conn.createStatement();
-        ResultSet rs = sen.executeQuery(query);
+
+    public ResultSet ejecutarSelect(String sql) throws SQLException{
+        stat = conn.createStatement();
+        ResultSet rs = stat.executeQuery(sql);
         return rs;
     }
-    public void cerrarStatement()throws SQLException{
-        sen.close();
+    
+    public void CLOSE() throws SQLException{
+        if (stat != null) {
+            stat.close();
+        }
+    }
+
+    public PreparedStatement prepareStatement(String sql) throws SQLException {
+        return conn.prepareStatement(sql);
     }
 }

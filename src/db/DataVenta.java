@@ -25,7 +25,7 @@ public class DataVenta {
                 + v.getId_vehiculo() + "','"
                 + v.getCantidad() + "',"
                 + v.getFecha_venta() + ")";
-        con.ejecutar(query);
+        con.ejecutarQuery(query);
     }
 
     public void ActualizarVentas(Ventas v) throws SQLException {
@@ -36,20 +36,20 @@ public class DataVenta {
                 + "cantidad = '" + v.getCantidad() + "',"
                 + "fecha venta = '" + v.getFecha_venta() + "',"
                 + "WHERE patente = '" + v.getId_ventas() + "'";
-        con.ejecutar(query);
+        con.ejecutarQuery(query);
     }
 
     public void EliminarVentas(String id_ventas) throws SQLException {
         String query = "DELETE FROM ventas "
                 + "WHERE "
                 + "ID = '" + id_ventas + "'";
-        con.ejecutar(query);
+        con.ejecutarQuery(query);
     }
 
     public ArrayList<Ventas> getVentas() throws SQLException {
 
         String sql = "SELECT * FROM ventas;";
-        ResultSet rs = con.select(sql);
+        ResultSet rs = con.ejecutarSelect(sql);
         ArrayList<Ventas> ventasList = new ArrayList<>();
 
         while (rs.next()) {
@@ -66,7 +66,7 @@ public class DataVenta {
 
     public Ventas getVentasByid(String id_ventas) throws SQLException {
         String query = "SELECT * FROM ventas WHERE id = '" + id_ventas + "'";
-        ResultSet rs = con.select(query);
+        ResultSet rs = con.ejecutarSelect(query);
 
         if (rs.next()) {
             Ventas v = new Ventas();
@@ -75,10 +75,10 @@ public class DataVenta {
             v.setId_vehiculo(Integer.parseInt("vehiculo_id_fk"));
             v.setCantidad(Integer.parseInt("cantidad"));
             v.setFecha_venta(LocalDate.parse(rs.getDate("fecha_venta").toString()));
-            con.cerrarStatement();
+            con.CLOSE();
             return v;
         } else {
-            con.cerrarStatement();
+            con.CLOSE();
             return null;
         }
     }

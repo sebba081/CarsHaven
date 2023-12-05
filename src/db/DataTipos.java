@@ -21,7 +21,7 @@ public class DataTipos {
         String query = "INSERT INTO tipos VALUES('"
                 + t.getId_tipo() + "','"
                 + t.getTipo() + ")";
-        con.ejecutar(query);
+        con.ejecutarQuery(query);
     }
 
     public void actualizarTipo(Tipos t) throws SQLException {
@@ -29,20 +29,20 @@ public class DataTipos {
                 + "id = '" + t.getId_tipo() + "' , "
                 + "tipo = '" + t.getTipo() + "',"
                 + "WHERE patente = '" + t.getId_tipo() + "'";
-        con.ejecutar(query);
+        con.ejecutarQuery(query);
     }
 
     public void EliminarTipo(String id_tipos) throws SQLException {
         String query = "DELETE FROM tipos "
                 + "WHERE "
                 + "id = '" + id_tipos + "'";
-        con.ejecutar(query);
+        con.ejecutarQuery(query);
     }
 
     public ArrayList<Tipos> getTipos() throws SQLException {
 
         String sql = "SELECT * FROM tipos;";
-        ResultSet rs = con.select(sql);
+        ResultSet rs = con.ejecutarSelect(sql);
         ArrayList<Tipos> tiposList = new ArrayList<>();
 
         while (rs.next()) {
@@ -56,16 +56,16 @@ public class DataTipos {
     
     public Tipos getTiposByid(String id_tipo) throws SQLException {
         String query = "SELECT * FROM tipos WHERE id = '" + id_tipo + "'";
-        ResultSet rs = con.select(query);
+        ResultSet rs = con.ejecutarSelect(query);
 
         if (rs.next()) {
             Tipos t = new Tipos();
             t.setId_tipo(Integer.parseInt("id"));
             t.setTipo(rs.getString("tipo"));
-            con.cerrarStatement();
+            con.CLOSE();
             return t;
         } else {
-            con.cerrarStatement();
+            con.CLOSE();
             return null;
         }
     }

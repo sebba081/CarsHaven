@@ -24,7 +24,7 @@ public class DataVeh {
                 + a.getModelo() + "','"
                 + a.getPrecio()+ "',"
                 + a.getTipo_id_fk()+ ")";
-        con.ejecutar(query);
+        con.ejecutarQuery(query);
     }
 
     public void ActualizarVehiculo(Vehiculo a) throws SQLException {
@@ -35,20 +35,20 @@ public class DataVeh {
                 + "Precio = '" + a.getPrecio()+ "',"
                 + "Tipo id = '" + a.getTipo_id_fk()+ "',"
                 + "WHERE patente = '" + a.getId()+ "'";
-        con.ejecutar(query);
+        con.ejecutarQuery(query);
     }
 
     public void EliminarVehiculo(String id) throws SQLException {
         String query = "DELETE FROM vehiculos "
                 + "WHERE "
                 + "ID = '" + id + "'";
-        con.ejecutar(query);
+        con.ejecutarQuery(query);
     }
 
     public ArrayList<Vehiculo> getVehiculos() throws SQLException {
 
         String sql = "SELECT * FROM vehiculos;";
-        ResultSet rs = con.select(sql);
+        ResultSet rs = con.ejecutarSelect(sql);
         ArrayList<Vehiculo> autoList = new ArrayList<>();
 
         while (rs.next()) {
@@ -65,7 +65,7 @@ public class DataVeh {
 
     public Vehiculo getVehiculoByid(String id) throws SQLException {
         String query = "SELECT * FROM vehiculos WHERE id = '" + id + "'";
-        ResultSet rs = con.select(query);
+        ResultSet rs = con.ejecutarSelect(query);
 
         if (rs.next()) {
             Vehiculo a = new Vehiculo();
@@ -74,10 +74,10 @@ public class DataVeh {
             a.setModelo(rs.getString("modelo"));
             a.setPrecio(Integer.parseInt("precio"));
             a.setTipo_id_fk(Integer.parseInt("Tipo_id"));
-            con.cerrarStatement();
+            con.CLOSE();
             return a;
         } else {
-            con.cerrarStatement();
+            con.CLOSE();
             return null;
         }
     }

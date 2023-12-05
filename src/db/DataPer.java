@@ -23,13 +23,13 @@ public class DataPer {
                 + p.getRut() + "','"
                 + p.getNombre() + "','"
                 + p.getCorreo() + ")";
-        conn.ejecutar(query);
+        conn.ejecutarQuery(query);
     }
 
     public ArrayList<Persona> getPersonas() throws SQLException {
 
         String sql = "SELECT * FROM personas;";
-        ResultSet rs = conn.select(sql);
+        ResultSet rs = conn.ejecutarSelect(sql);
         ArrayList<Persona> personaList = new ArrayList<>();
 
         while (rs.next()) {
@@ -45,7 +45,7 @@ public class DataPer {
     
     public Persona getPersonaByid(String id_personas) throws SQLException {
         String query = "SELECT * FROM personas WHERE id = '" + id_personas + "'";
-        ResultSet rs = conn.select(query);
+        ResultSet rs = conn.ejecutarSelect(query);
 
         if (rs.next()) {
             Persona p = new Persona();
@@ -53,27 +53,11 @@ public class DataPer {
             p.setRut(rs.getString("rut"));
             p.setNombre(rs.getString("nombre"));
             p.setCorreo(rs.getString("email"));
-            conn.cerrarStatement();
+            conn.CLOSE();
             return p;
         } else {
-            conn.cerrarStatement();
+            conn.CLOSE();
             return null;
-        }
-    }
-    public static boolean verificarLogin(String rut, String contraseña) throws SQLException {
-        String sql = "SELECT * FROM personas WHERE rut = ? AND contraseña = ?";
-    
-        try (PreparedStatement statement = conn.prepareStatement(sql)) {
-            statement.setString(1, rut);
-            statement.setString(2, contraseña);
-        
-            try (ResultSet resultSet = statement.executeQuery()) {
-                return resultSet.next(); // Si hay al menos una fila, el login es exitoso
-            }
-        } catch (SQLException e) {
-        // Considera lanzar una excepción personalizada o manejar de manera adecuada
-            e.printStackTrace();
-            throw e;
         }
     }
 }
