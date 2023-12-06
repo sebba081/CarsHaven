@@ -3,18 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/RullRoice/Desktop/CarsHaven-main/src/vista/LoginMain.java</file>
-            <file>file:/C:/Users/RullRoice/Desktop/CarsHaven-main/src/db/DataTipos.java</file>
-            <file>file:/C:/Users/RullRoice/Desktop/CarsHaven-main/src/db/DataPer.java</file>
-            <file>file:/C:/Users/RullRoice/Desktop/CarsHaven-main/src/modelo/Ventas.java</file>
-            <file>file:/C:/Users/RullRoice/Desktop/CarsHaven-main/src/db/DataVenta.java</file>
-            <file>file:/C:/Users/RullRoice/Desktop/CarsHaven-main/src/vista/MenuVen.java</file>
-            <file>file:/C:/Users/RullRoice/Desktop/CarsHaven-main/src/modelo/Vehiculo.java</file>
-            <file>file:/C:/Users/RullRoice/Desktop/CarsHaven-main/src/modelo/Persona.java</file>
-            <file>file:/C:/Users/RullRoice/Desktop/CarsHaven-main/src/vista/MenuAdmin.java</file>
-            <file>file:/C:/Users/RullRoice/Desktop/CarsHaven-main/src/modelo/Tipos.java</file>
-            <file>file:/C:/Users/RullRoice/Desktop/CarsHaven-main/src/db/DataVeh.java</file>
-            <file>file:/C:/Users/RullRoice/Desktop/CarsHaven-main/src/db/Conexion.java</file>
+            <file>file:/C:/Users/sebba/OneDrive/Desktop/CarsHaven/src/vista/Admin.java</file>
+            <file>file:/C:/Users/sebba/OneDrive/Desktop/CarsHaven/src/vista/LoginMain.java</file>
+            <file>file:/C:/Users/sebba/OneDrive/Desktop/CarsHaven/src/vista/Vendedor.java</file>
         </group>
     </open-files>
 </project-private>
