@@ -16,12 +16,13 @@ import javax.swing.JOptionPane;
 public class LoginMain extends javax.swing.JFrame {
 
     private DataUsu dataUsu;
+    private Conexion conexion;
 
     public LoginMain() {
         initComponents();
         try {
-            Conexion db = new Conexion("automotora");
-            this.dataUsu = new DataUsu (db);
+            conexion = new Conexion("automotora");
+            this.dataUsu = new DataUsu (conexion);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "Error connecting to the database.");
         }

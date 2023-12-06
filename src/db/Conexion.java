@@ -14,10 +14,10 @@ public class Conexion {
     private Statement stat;
 
     public Conexion(String db) throws SQLException {
-        String url = "jdbc:mysql://localhost/" + db + "?user=root&password=root";
+        String url = "jdbc:mysql://localhost/" + db + "?user=root&password=";
         System.out.println("[*] " + url);
         conn = DriverManager.getConnection(url);
-        stat = conn.createStatement();
+        System.out.println("funka");
     }
 
     public void ejecutarQuery(String sql) throws SQLException {
@@ -33,9 +33,7 @@ public class Conexion {
     }
     
     public void CLOSE() throws SQLException{
-        if (stat != null) {
-            stat.close();
-        }
+        stat.close();
     }
 
     public PreparedStatement prepareStatement(String sql) throws SQLException {
