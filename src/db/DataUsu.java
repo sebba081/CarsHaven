@@ -20,7 +20,6 @@ public class DataUsu {
      *
      * @param conexion
      */
-
     public DataUsu(Conexion conexion) {
         this.conn = conexion;
     }
@@ -52,4 +51,25 @@ public class DataUsu {
             return false;
         }
     }
+
+    public String getUserTipo(String email) throws SQLException {
+        String query = "SELECT tipo_usuario FROM usuarios u " +
+                       "INNER JOIN tipo_usuario tu ON u.id_tipo_usuario = tu.id " +
+                       "WHERE u.email = ?";
+        
+        try (PreparedStatement preparedStatement = conn.prepareStatement(query)) {
+            preparedStatement.setString(1, email);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getString("tipo_usuario");
+                } else {
+                    return null;  // User not found
+                }
+            }
+        } catch (SQLException e) {
+            throw new SQLException("Error retrieving user role.", e);
+        }
+    }
+
 }

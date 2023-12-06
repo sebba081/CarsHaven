@@ -17,17 +17,23 @@ public class LoginMain extends javax.swing.JFrame {
 
     private DataUsu dataUsu;
     private Conexion conexion;
+    private Admin admin;
+    private Vendedor vende;
 
     public LoginMain() {
         initComponents();
         try {
             conexion = new Conexion("automotora");
-            this.dataUsu = new DataUsu (conexion);
+            this.dataUsu = new DataUsu(conexion);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "Error connecting to the database.");
         }
+        admin = new Admin(this);
+        vende = new Vendedor(this);
     }
-
+    public void abrirVentana(){
+        this.setVisible(true);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -122,14 +128,23 @@ public class LoginMain extends javax.swing.JFrame {
 
         try {
             if (dataUsu.iniciarSesion(email, contraseña)) {
-                JOptionPane.showMessageDialog(this, "Inicio de secion correcto!");
-                this.setVisible(false);
-                // Aquí podrías mostrar el panel o ventana correspondiente
+                JOptionPane.showMessageDialog(this, "Inicio de sesión correcto!");
+                String userTipo = dataUsu.getUserTipo(email);
+                if (userTipo.equals("Administrador")) {
+                    admin.setVisible(true);
+                    this.setVisible(false);
+                } 
+                if (userTipo.equals("Vendedor")){
+                    vende.setVisible(true);
+                    this.setVisible(false);
+                    
+                    
+                }    
             } else {
-                JOptionPane.showMessageDialog(this, "Datos incorrectos. Porfavor revisar.");
+                JOptionPane.showMessageDialog(this, "Datos incorrectos. Por favor revisar.");
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error al iniciar. Pruebe otra vez.");
+            JOptionPane.showMessageDialog(this, "Error al iniciar sesión. Pruebe otra vez.");
         }
 
     }//GEN-LAST:event_btnLogActionPerformed
@@ -138,13 +153,13 @@ public class LoginMain extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-    java.awt.EventQueue.invokeLater(new Runnable() {
-        @Override
-        public void run() {
-            new LoginMain().setVisible(true);
-        }
-    });
-}
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new LoginMain().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLog;
