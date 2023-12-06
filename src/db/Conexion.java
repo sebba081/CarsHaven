@@ -2,23 +2,19 @@ package db;
 /**
  * @author sebba
  */
-import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class Conexion {
     private Connection conn;
     private Statement stat;
 
-    public Conexion() {
-    }
-    
-
     public Conexion(String db) throws SQLException {
-        String url = "jdbc:mysql://localhost/" + db + "?user=root&password=";
+        String url = "jdbc:mysql://localhost/" + db + "?user=root&password=root";
         System.out.println("[*] " + url);
         conn = DriverManager.getConnection(url);
         stat = conn.createStatement();

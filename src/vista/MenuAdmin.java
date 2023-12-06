@@ -387,6 +387,11 @@ public class MenuAdmin extends javax.swing.JPanel {
         );
 
         btnEliminarSec.setText("Eliminar Selecion");
+        btnEliminarSec.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarSecActionPerformed(evt);
+            }
+        });
 
         btnCrearAuto.setText("Crear Vehiculo");
 
@@ -444,6 +449,10 @@ public class MenuAdmin extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnEliminarSecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarSecActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarSecActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

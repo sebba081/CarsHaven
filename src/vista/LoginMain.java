@@ -4,6 +4,9 @@
  */
 package vista;
 
+import db.Conexion;
+import db.DataUsu;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,11 +15,16 @@ import javax.swing.JOptionPane;
  */
 public class LoginMain extends javax.swing.JFrame {
 
-    /**
-     * Creates new form LoginMain
-     */
+    private DataUsu dataUsu;
+
     public LoginMain() {
         initComponents();
+        try {
+            Conexion db = new Conexion("automotora");
+            this.dataUsu = new DataUsu (db);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error connecting to the database.");
+        }
     }
 
     /**
@@ -28,11 +36,12 @@ public class LoginMain extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtCorreo = new javax.swing.JTextField();
+        jPLogin = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtContraLog = new javax.swing.JPasswordField();
         jLRut = new javax.swing.JLabel();
+        txtCorreo = new javax.swing.JTextField();
         jLContra = new javax.swing.JLabel();
+        txtContraLog = new javax.swing.JPasswordField();
         btnLog = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -50,117 +59,98 @@ public class LoginMain extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout jPLoginLayout = new javax.swing.GroupLayout(jPLogin);
+        jPLogin.setLayout(jPLoginLayout);
+        jPLoginLayout.setHorizontalGroup(
+            jPLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPLoginLayout.createSequentialGroup()
+                .addGroup(jPLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPLoginLayout.createSequentialGroup()
+                        .addGap(295, 295, 295)
+                        .addComponent(jLabel1))
+                    .addGroup(jPLoginLayout.createSequentialGroup()
+                        .addGap(232, 232, 232)
+                        .addGroup(jPLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLContra)
+                            .addComponent(jLRut, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                            .addComponent(txtCorreo)
+                            .addComponent(txtContraLog)))
+                    .addGroup(jPLoginLayout.createSequentialGroup()
+                        .addGap(307, 307, 307)
+                        .addComponent(btnLog)))
+                .addContainerGap(312, Short.MAX_VALUE))
+        );
+        jPLoginLayout.setVerticalGroup(
+            jPLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPLoginLayout.createSequentialGroup()
+                .addGap(155, 155, 155)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jLRut)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLContra)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtContraLog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnLog)
+                .addContainerGap(256, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(277, 277, 277)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtCorreo)
-                            .addComponent(txtContraLog)
-                            .addComponent(jLRut, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
-                            .addComponent(jLContra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(342, 342, 342)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(340, 340, 340)
-                        .addComponent(btnLog)))
-                .addContainerGap(312, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jPLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(45, 45, 45))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(164, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(56, 56, 56)
-                .addComponent(jLRut)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLContra)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtContraLog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnLog)
-                .addGap(215, 215, 215))
+            .addComponent(jPLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogActionPerformed
-        String correo = txtCorreo.getText();
-        String contrasena = new String(txtContraLog.getPassword());
+        String email = txtCorreo.getText();
+        String contraseña = new String(txtContraLog.getPassword());
 
         try {
-            // Crear una instancia de la clase AutenticacionUsuario (la clase que contiene la lógica de autenticación)
-            AutenticacionUsuario autenticacionUsuario = new AutenticacionUsuario();
-
-            // Realizar la autenticación
-            if (autenticacionUsuario.autenticarUsuario(correo, contrasena)) {
-                JOptionPane.showMessageDialog(this, "Login successful!");
+            if (dataUsu.iniciarSesion(email, contraseña)) {
+                JOptionPane.showMessageDialog(this, "Inicio de secion correcto!");
                 this.setVisible(false);
-                MenuAdmin.jPanel.setVisible(true);
+                // Aquí podrías mostrar el panel o ventana correspondiente
             } else {
-                JOptionPane.showMessageDialog(this, "Login failed. Please check your credentials.");
+                JOptionPane.showMessageDialog(this, "Datos incorrectos. Porfavor revisar.");
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "An error occurred during login. Please try again.");
+            JOptionPane.showMessageDialog(this, "Error al iniciar. Pruebe otra vez.");
         }
+
     }//GEN-LAST:event_btnLogActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginMain.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginMain.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginMain.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginMain.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    java.awt.EventQueue.invokeLater(new Runnable() {
+        @Override
+        public void run() {
+            new LoginMain().setVisible(true);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LoginMain().setVisible(true);
-            }
-        });
-    }
+    });
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLog;
     private javax.swing.JLabel jLContra;
     private javax.swing.JLabel jLRut;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPLogin;
     private javax.swing.JPasswordField txtContraLog;
     private javax.swing.JTextField txtCorreo;
     // End of variables declaration//GEN-END:variables
