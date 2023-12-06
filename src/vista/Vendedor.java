@@ -3,9 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package vista;
-
-import javax.swing.JFrame;
-
 /**
  *
  * @author sebba
@@ -437,6 +434,7 @@ public class Vendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_vehiculoTableMouseClicked
 
     private void btnEntrarventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarventaActionPerformed
+        this.setVisible(false);
         diaVenta.setVisible(true);
 // TODO add your handling code here:
     }//GEN-LAST:event_btnEntrarventaActionPerformed
