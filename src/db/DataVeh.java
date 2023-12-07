@@ -3,6 +3,7 @@ package db;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 import modelo.Vehiculo;
 
 /**
@@ -10,11 +11,18 @@ import modelo.Vehiculo;
  * @author antho
  */
 public class DataVeh {
+    
+    private final List<Vehiculo> listaVeh;
+
+    public static ArrayList<Vehiculo> getListaDeVehiculos() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
     private Conexion con;
 
     public DataVeh(String db) throws SQLException {
         con = new Conexion(db);
+        this.listaVeh = new ArrayList<>();
     }
 
     public void insertarVehiculo(Vehiculo a) throws SQLException {

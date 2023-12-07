@@ -3,19 +3,30 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package vista;
+
+import TableModel.TMVeh;
+import db.DataVeh;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import modelo.Vehiculo;
+
 /**
  *
  * @author sebba
  */
 public class Vendedor extends javax.swing.JFrame {
- private LoginMain loginR;
+
+    private LoginMain loginR;
 
     /**
      * Creates new form MenuAdmin
+     *
+     * @param login
      */
     public Vendedor(LoginMain login) {
         initComponents();
         loginR = login;
+
     }
 
     /**
@@ -86,6 +97,11 @@ public class Vendedor extends javax.swing.JFrame {
         jLabel7.setText("ID");
 
         btnVolverventa.setText("Volver");
+        btnVolverventa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverventaActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("CarsHaven");
 
@@ -110,7 +126,7 @@ public class Vendedor extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboIDven, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(103, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnVolverventa)
@@ -222,7 +238,7 @@ public class Vendedor extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(checkClientenuevo)
                     .addComponent(jLabel15))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
                 .addComponent(btnVentahecha)
                 .addGap(79, 79, 79))
         );
@@ -431,12 +447,34 @@ public class Vendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_vehiculoTableMouseClicked
 
     private void btnEntrarventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarventaActionPerformed
-        this.setVisible(false);
         diaVenta.setVisible(true);
+        diaVenta.setSize(673, 506);
 // TODO add your handling code here:
     }//GEN-LAST:event_btnEntrarventaActionPerformed
 
+    private void btnVolverventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverventaActionPerformed
+        diaVenta.setVisible(false);
+// TODO add your handling code here:
+    }//GEN-LAST:event_btnVolverventaActionPerformed
 
+    public void updateTable() {
+        try {
+            //lista asistencia
+            ArrayList<Vehiculo> listaVeh= DataVeh.getListaDeVehiculos();
+            TMVeh modeloTablaAs = new TMVeh(listaVeh);
+            main_TableAsis.setModel(modeloTablaAs);
+            //lista estudiantes
+            ArrayList<Estudiante> listaEstudiantes = dataAsistencia.getListaDeEstudiantes();
+            EstudianteTM modeloTablaEs = new EstudianteTM(listaEstudiantes);
+            main_TableEstu.setModel(modeloTablaEs);
+            //lista profesor
+            ArrayList<Profesor> listaProfesores = dataAsistencia.getListaDeProfesores();
+            ProfesorTM modeloTablaPro = new ProfesorTM(listaProfesores);
+            main_TableProf.setModel(modeloTablaPro);
+        } catch (SQLException ex) {
+
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrarsec;
     private javax.swing.JButton btnEntrarventa;
