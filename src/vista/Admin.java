@@ -4,11 +4,23 @@
  */
 package vista;
 
+import db.DataPer;
+import db.DataVeh;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import modelo.Persona;
+import modelo.Vehiculo;
+
 /**
  *
  * @author sebba
  */
 public class Admin extends javax.swing.JFrame {
+
+    private DataPer datap;
+    private DataVeh datav;
 
     private LoginMain loginR;
 
@@ -17,6 +29,13 @@ public class Admin extends javax.swing.JFrame {
      */
     public Admin(LoginMain login) {
         initComponents();
+        
+        try {
+            datap = new DataPer("automotora");
+            datav = new DataVeh("automotora");
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
         loginR = login;
         //loginR.abrirVentana();
     }
@@ -32,23 +51,23 @@ public class Admin extends javax.swing.JFrame {
 
         diaVehiculo = new javax.swing.JDialog();
         jPanel2 = new javax.swing.JPanel();
-        comboMarca = new javax.swing.JComboBox<>();
-        comboModelo = new javax.swing.JComboBox<>();
         comboTipo = new javax.swing.JComboBox<>();
-        comboCodigo = new javax.swing.JComboBox<>();
         btnCrear = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        txt_marcaAuto = new javax.swing.JTextField();
+        txt_modeloAuto = new javax.swing.JTextField();
+        txt_precioAuto = new javax.swing.JTextField();
         diaEmpleado = new javax.swing.JDialog();
         jPanel7 = new javax.swing.JPanel();
         txtAddName = new javax.swing.JTextField();
         txtAddCorreo = new javax.swing.JTextField();
         txtAddContr = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        txt_rut = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -79,17 +98,21 @@ public class Admin extends javax.swing.JFrame {
         btnCrearEmpleados = new javax.swing.JButton();
         btnTotalVent = new javax.swing.JButton();
 
-        comboMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        comboModelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        comboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        comboCodigo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "cedan", "deportivos", "super-deportivos" }));
 
         btnCrear.setText("Crear");
+        btnCrear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearActionPerformed(evt);
+            }
+        });
 
         btnBack.setText("Atras");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Marca");
 
@@ -97,9 +120,9 @@ public class Admin extends javax.swing.JFrame {
 
         jLabel3.setText("Tipo");
 
-        jLabel4.setText("Codigo");
-
         jLabel5.setText("jLabel5");
+
+        jLabel4.setText("Precio");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -115,21 +138,21 @@ public class Admin extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(74, 74, 74)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(comboMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(53, 53, 53)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_marcaAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(55, 55, 55)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(comboModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addGap(68, 68, 68)
+                            .addComponent(jLabel2)
+                            .addComponent(txt_modeloAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(70, 70, 70)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(65, 65, 65)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(34, 34, 34)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(comboCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(62, Short.MAX_VALUE))
+                            .addComponent(txt_precioAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(39, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnCrear)
@@ -150,10 +173,10 @@ public class Admin extends javax.swing.JFrame {
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_marcaAuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_modeloAuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_precioAuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addComponent(btnCrear)
                 .addContainerGap(33, Short.MAX_VALUE))
@@ -176,11 +199,21 @@ public class Admin extends javax.swing.JFrame {
 
         jLabel8.setText("Contraseña");
 
-        jLabel9.setText("ID");
+        jLabel9.setText("Rut");
 
         btnGuardarEmp.setText("Guardar");
+        btnGuardarEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarEmpActionPerformed(evt);
+            }
+        });
 
         btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -196,7 +229,7 @@ public class Admin extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 170, Short.MAX_VALUE)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtAddContr, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txt_rut, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(94, 94, 94))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel6)
@@ -237,7 +270,7 @@ public class Admin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtAddCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_rut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnGuardarEmp)
                 .addGap(14, 14, 14))
@@ -257,6 +290,11 @@ public class Admin extends javax.swing.JFrame {
         btnActable.setText("Actualizar");
 
         btnVolverTotal.setText("Volver");
+        btnVolverTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverTotalActionPerformed(evt);
+            }
+        });
 
         jLabel11.setText("CARS HAVEN");
 
@@ -311,6 +349,7 @@ public class Admin extends javax.swing.JFrame {
         diaVentas.getContentPane().setLayout(diaVentasLayout);
         diaVentasLayout.setHorizontalGroup(
             diaVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
             .addGroup(diaVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(diaVentasLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -319,6 +358,7 @@ public class Admin extends javax.swing.JFrame {
         );
         diaVentasLayout.setVerticalGroup(
             diaVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
             .addGroup(diaVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(diaVentasLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -331,6 +371,11 @@ public class Admin extends javax.swing.JFrame {
         jLabel10.setText("Cars Haven");
 
         btnCerraAdm.setText("Cerrar Sesion");
+        btnCerraAdm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerraAdmActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -428,8 +473,18 @@ public class Admin extends javax.swing.JFrame {
         });
 
         btnCrearEmpleados.setText("Crear Empleados");
+        btnCrearEmpleados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearEmpleadosActionPerformed(evt);
+            }
+        });
 
         btnTotalVent.setText("Total Ventas");
+        btnTotalVent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTotalVentActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -510,10 +565,99 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarSecActionPerformed
 
     private void btnCrearAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearAutoActionPerformed
-        diaVehiculo.setVisible(true); 
-        diaVehiculo.setSize(610, 225);
-        // TODO add your handling code here:
+        diaVehiculo.setVisible(true);        // TODO add your handling code here:
+        diaVehiculo.setSize(546, 236);
+
     }//GEN-LAST:event_btnCrearAutoActionPerformed
+
+    private void btnGuardarEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarEmpActionPerformed
+        // guardar todos los datos del empleados
+        try {
+            Persona p = new Persona();
+
+            String nombre = txtAddName.getText();
+            String rut = txt_rut.getText();
+            String correo = txtAddCorreo.getText();
+            //String contra = txtAddContr.getText();
+
+            p.setNombre(nombre);
+            p.setRut(rut);
+            p.setCorreo(correo);
+            //p.setContraseña(contra);
+
+            datap.insertarPersona(p);
+            JOptionPane.showMessageDialog(null, "!El empleado a sido registrado con exito!");
+        } catch (SQLException e) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, e);
+        }
+
+    }//GEN-LAST:event_btnGuardarEmpActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+
+        //volver a la ventana admin
+        diaVehiculo.setVisible(false);
+
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnCrearEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearEmpleadosActionPerformed
+        // TODO add your handling code here:
+
+        diaEmpleado.setVisible(true);
+        diaEmpleado.setSize(730, 300);
+
+    }//GEN-LAST:event_btnCrearEmpleadosActionPerformed
+
+    private void btnTotalVentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTotalVentActionPerformed
+        // TODO add your handling code here:
+
+        diaVentas.setVisible(true);
+        diaVentas.setSize(860, 650);
+
+    }//GEN-LAST:event_btnTotalVentActionPerformed
+
+    private void btnVolverTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverTotalActionPerformed
+        // TODO add your handling code here:
+        diaVentas.setVisible(false);
+    }//GEN-LAST:event_btnVolverTotalActionPerformed
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        // TODO add your handling code here:
+
+        diaEmpleado.setVisible(false);
+    }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
+        //guardar los datos del auto..........
+        try {
+            Vehiculo v = new Vehiculo();
+
+            String marca = txt_marcaAuto.getText();
+            String modelo = txt_modeloAuto.getText();
+            int precio = Integer.parseInt(txt_precioAuto.getText());
+
+            v.setMarca(marca);
+            v.setModelo(modelo);
+            v.setPrecio(precio);
+
+            Object selectedItem = comboTipo.getSelectedItem();
+            if (selectedItem != null) {
+                String selectedString = selectedItem.toString();
+                System.out.println("Valor Seleccionado" + selectedItem);
+            } else {
+                System.out.println("No se a seleccionado ningun valor");
+            }
+            datav.insertarVehiculo(v);
+        } catch (SQLException e) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }//GEN-LAST:event_btnCrearActionPerformed
+
+    private void btnCerraAdmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerraAdmActionPerformed
+        // TODO add your handling code here:
+        loginR.setVisible(true);
+    }//GEN-LAST:event_btnCerraAdmActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActable;
@@ -527,9 +671,6 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JButton btnTotalVent;
     private javax.swing.JButton btnVolver;
     private javax.swing.JButton btnVolverTotal;
-    private javax.swing.JComboBox<String> comboCodigo;
-    private javax.swing.JComboBox<String> comboMarca;
-    private javax.swing.JComboBox<String> comboModelo;
     private javax.swing.JComboBox<String> comboTipo;
     private javax.swing.JDialog diaEmpleado;
     private javax.swing.JDialog diaVehiculo;
@@ -558,11 +699,14 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTabbedPane tPaneAdm;
     private javax.swing.JTable tableTotalven;
     private javax.swing.JTextField txtAddContr;
     private javax.swing.JTextField txtAddCorreo;
     private javax.swing.JTextField txtAddName;
+    private javax.swing.JTextField txt_marcaAuto;
+    private javax.swing.JTextField txt_modeloAuto;
+    private javax.swing.JTextField txt_precioAuto;
+    private javax.swing.JTextField txt_rut;
     // End of variables declaration//GEN-END:variables
 }

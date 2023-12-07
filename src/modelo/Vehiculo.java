@@ -114,7 +114,7 @@ public class Vehiculo {
     }
     public Tipo buscarTipoPorId(ArrayList<Tipo> listaTipos) {
         for (Tipo tipo : listaTipos) {
-            if (tipo.getIdTipo() == this.tipo_id_fk) {
+            if (tipo.getId_tipo()== this.tipo_id_fk) {
                 return tipo;
             }
         }

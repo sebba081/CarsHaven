@@ -20,27 +20,7 @@ public class Vendedor extends javax.swing.JFrame {
     public Vendedor(LoginMain login) {
         initComponents();
         loginR = login;
-        
-
-    private void initComponents() {
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setTitle("Tabla de Vehículos");
-
-        // Crear el modelo de tabla con la lista de vehículos
-        VehiculoTableModel modeloTabla = new VehiculoTableModel(listaDeVehiculos);
-
-        // Crear la tabla con el modelo
-        JTable tabla = new JTable(modeloTabla);
-
-        // Agregar la tabla a un JScrollPane
-        JScrollPane scrollPane = new JScrollPane(tabla);
-
-        // Agregar el JScrollPane al JFrame
-        getContentPane().add(scrollPane, BorderLayout.CENTER);
-
-        pack();
-        setLocationRelativeTo(null);
-    }
+ 
 }
 
 /**
