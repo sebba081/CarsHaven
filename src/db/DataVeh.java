@@ -14,10 +14,6 @@ public class DataVeh {
     
     private final List<Vehiculo> listaVeh;
 
-    public static ArrayList<Vehiculo> getListaDeVehiculos() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
     private Conexion con;
 
     public DataVeh(String db) throws SQLException {
