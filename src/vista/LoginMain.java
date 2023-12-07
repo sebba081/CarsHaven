@@ -73,10 +73,6 @@ public class LoginMain extends javax.swing.JFrame {
         jPLogin.setLayout(jPLoginLayout);
         jPLoginLayout.setHorizontalGroup(
             jPLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPLoginLayout.createSequentialGroup()
-                .addGap(0, 244, Short.MAX_VALUE)
-                .addComponent(jLogo)
-                .addGap(241, 241, 241))
             .addGroup(jPLoginLayout.createSequentialGroup()
                 .addGroup(jPLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPLoginLayout.createSequentialGroup()
@@ -90,13 +86,17 @@ public class LoginMain extends javax.swing.JFrame {
                         .addGap(281, 281, 281)
                         .addComponent(btnLog)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPLoginLayout.createSequentialGroup()
+                .addGap(0, 247, Short.MAX_VALUE)
+                .addComponent(jLogo)
+                .addGap(238, 238, 238))
         );
         jPLoginLayout.setVerticalGroup(
             jPLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPLoginLayout.createSequentialGroup()
-                .addGap(48, 48, 48)
+                .addGap(40, 40, 40)
                 .addComponent(jLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addGap(46, 46, 46)
                 .addComponent(jLRut)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -106,7 +106,7 @@ public class LoginMain extends javax.swing.JFrame {
                 .addComponent(txtContraLog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnLog)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(119, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

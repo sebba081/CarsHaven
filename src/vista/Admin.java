@@ -1,13 +1,9 @@
 package vista;
 
-import com.formdev.flatlaf.FlatDarkLaf;
-import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.intellijthemes.FlatCyanLightIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatOneDarkIJTheme;
 import java.awt.Image;
 import java.io.IOException;
-import java.lang.System.Logger;
-import java.lang.System.Logger.Level;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
@@ -24,7 +20,7 @@ public class Admin extends javax.swing.JFrame {
         loginR = login;
 
         try {
-            UIManager.setLookAndFeel(new FlatDarkLaf());
+            UIManager.setLookAndFeel(new FlatOneDarkIJTheme());
             SwingUtilities.updateComponentTreeUI(this);
 
             Image image = getImage("/Iconos/LigthOffHaven.png");
@@ -35,7 +31,7 @@ public class Admin extends javax.swing.JFrame {
     }
 
     private void cambiarTemaEImagen() {
-        // Cambiar tema
+       
         if (UIManager.getLookAndFeel().getClass().equals(FlatOneDarkIJTheme.class)) {
             try {
                 UIManager.setLookAndFeel(new FlatCyanLightIJTheme());
@@ -50,12 +46,12 @@ public class Admin extends javax.swing.JFrame {
             }
         }
 
-        // Actualizar la interfaz
+        
         SwingUtilities.updateComponentTreeUI(this);
 
-        // Cambiar imagen
+       
         Image image = getImage(
-                UIManager.getLookAndFeel().getClass().equals(FlatDarkLaf.class)
+                UIManager.getLookAndFeel().getClass().equals(FlatOneDarkIJTheme.class)
                         ? "/Iconos/LigthOffHaven.png"
                         : "/Iconos/LigthOnHaven.png"
         );
