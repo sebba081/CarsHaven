@@ -56,11 +56,12 @@ public class Admin extends javax.swing.JFrame {
         btnGuardarEmp = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
         diaVentas = new javax.swing.JDialog();
+        jPanel8 = new javax.swing.JPanel();
+        btnActable = new javax.swing.JButton();
+        btnVolverTotal = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableTotalven = new javax.swing.JTable();
-        jLabel11 = new javax.swing.JLabel();
-        btnVolverTotal = new javax.swing.JButton();
-        btnActable = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -253,6 +254,21 @@ public class Admin extends javax.swing.JFrame {
             .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        javax.swing.GroupLayout diaVentasLayout = new javax.swing.GroupLayout(diaVentas.getContentPane());
+        diaVentas.getContentPane().setLayout(diaVentasLayout);
+        diaVentasLayout.setHorizontalGroup(
+            diaVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        );
+        diaVentasLayout.setVerticalGroup(
+            diaVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        );
+
+        btnActable.setText("Actualizar");
+
+        btnVolverTotal.setText("Volver");
+
+        jLabel11.setText("CARS HAVEN");
+
         tableTotalven.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -266,17 +282,11 @@ public class Admin extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tableTotalven);
 
-        jLabel11.setText("CARS HAVEN");
-
-        btnVolverTotal.setText("Volver");
-
-        btnActable.setText("Actualizar");
-
-        javax.swing.GroupLayout diaVentasLayout = new javax.swing.GroupLayout(diaVentas.getContentPane());
-        diaVentas.getContentPane().setLayout(diaVentasLayout);
-        diaVentasLayout.setHorizontalGroup(
-            diaVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, diaVentasLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(btnVolverTotal)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 319, Short.MAX_VALUE)
@@ -284,21 +294,21 @@ public class Admin extends javax.swing.JFrame {
                 .addGap(256, 256, 256)
                 .addComponent(btnActable)
                 .addGap(21, 21, 21))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, diaVentasLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50))
         );
-        diaVentasLayout.setVerticalGroup(
-            diaVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, diaVentasLayout.createSequentialGroup()
-                .addGroup(diaVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(diaVentasLayout.createSequentialGroup()
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGap(39, 39, 39)
                         .addComponent(jLabel11))
-                    .addGroup(diaVentasLayout.createSequentialGroup()
+                    .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
-                        .addGroup(diaVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnActable)
                             .addComponent(btnVolverTotal))))
                 .addGap(66, 66, 66)
@@ -401,6 +411,11 @@ public class Admin extends javax.swing.JFrame {
         });
 
         btnCrearAuto.setText("Crear Vehiculo");
+        btnCrearAuto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearAutoActionPerformed(evt);
+            }
+        });
 
         btnCrearEmpleados.setText("Crear Empleados");
 
@@ -484,6 +499,9 @@ public class Admin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEliminarSecActionPerformed
 
+    private void btnCrearAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearAutoActionPerformed
+        diaVehiculo.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCrearAutoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActable;
@@ -522,6 +540,7 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
