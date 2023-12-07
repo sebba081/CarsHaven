@@ -8,18 +8,10 @@ package modelo;
  *
  * @author sebba
  */
-public class Usuario {
-    String correo;
+public class Usuario extends Persona{
+
     String contreseña;
     String tipoUsuario;
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
 
     public String getContreseña() {
         return contreseña;
@@ -37,8 +29,7 @@ public class Usuario {
         this.tipoUsuario = tipoUsuario;
     }
 
-    public Usuario(String correo, String contreseña, String tipoUsuario) {
-        this.correo = correo;
+    public Usuario(String contreseña, String tipoUsuario) {
         this.contreseña = contreseña;
         this.tipoUsuario = tipoUsuario;
     }

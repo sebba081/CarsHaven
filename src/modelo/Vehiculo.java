@@ -4,6 +4,7 @@
  */
 package modelo;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 /**
@@ -111,5 +112,12 @@ public class Vehiculo {
     public String toString() {
         return "Vehiculo{" + "id=" + id + ", marca=" + marca + ", modelo=" + modelo + ", precio=" + precio + ", tipo_id_fk=" + tipo_id_fk + '}';
     }
-
+    public Tipo buscarTipoPorId(ArrayList<Tipo> listaTipos) {
+        for (Tipo tipo : listaTipos) {
+            if (tipo.getIdTipo() == this.tipo_id_fk) {
+                return tipo;
+            }
+        }
+        return null; // Retorna null si no se encuentra el tipo con el ID especificado
+    }
 }
