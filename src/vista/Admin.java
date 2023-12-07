@@ -254,15 +254,6 @@ public class Admin extends javax.swing.JFrame {
             .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout diaVentasLayout = new javax.swing.GroupLayout(diaVentas.getContentPane());
-        diaVentas.getContentPane().setLayout(diaVentasLayout);
-        diaVentasLayout.setHorizontalGroup(
-            diaVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        );
-        diaVentasLayout.setVerticalGroup(
-            diaVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        );
-
         btnActable.setText("Actualizar");
 
         btnVolverTotal.setText("Volver");
@@ -314,6 +305,25 @@ public class Admin extends javax.swing.JFrame {
                 .addGap(66, 66, 66)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(51, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout diaVentasLayout = new javax.swing.GroupLayout(diaVentas.getContentPane());
+        diaVentas.getContentPane().setLayout(diaVentasLayout);
+        diaVentasLayout.setHorizontalGroup(
+            diaVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(diaVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(diaVentasLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        diaVentasLayout.setVerticalGroup(
+            diaVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(diaVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(diaVentasLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -500,7 +510,9 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarSecActionPerformed
 
     private void btnCrearAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearAutoActionPerformed
-        diaVehiculo.setVisible(true);        // TODO add your handling code here:
+        diaVehiculo.setVisible(true); 
+        diaVehiculo.setSize(610, 225);
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnCrearAutoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
