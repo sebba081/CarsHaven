@@ -461,8 +461,8 @@ public class Vendedor extends javax.swing.JFrame {
         try {
             //lista asistencia
             ArrayList<Vehiculo> listaVeh= DataVeh.getListaDeVehiculos();
-            TMVeh modeloTablaAs = new TMVeh(listaVeh);
-            main_TableAsis.setModel(modeloTablaAs);
+                TMVeh modeloTablaAs = new TMVeh(listaVeh);
+                main_TableAsis.setModel(modeloTablaAs);
             //lista estudiantes
             ArrayList<Estudiante> listaEstudiantes = dataAsistencia.getListaDeEstudiantes();
             EstudianteTM modeloTablaEs = new EstudianteTM(listaEstudiantes);
