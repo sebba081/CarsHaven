@@ -4,6 +4,7 @@
  */
 package vista;
 
+import com.formdev.flatlaf.intellijthemes.FlatOneDarkIJTheme;
 import db.Conexion;
 import db.DataUsu;
 import java.sql.SQLException;
@@ -55,7 +56,7 @@ public class LoginMain extends javax.swing.JFrame {
 
         jLabel1.setText("Cars Haven.png");
 
-        jLRut.setText("Rut");
+        jLRut.setText("Correo");
 
         jLContra.setText("Contraseña");
 
@@ -73,24 +74,24 @@ public class LoginMain extends javax.swing.JFrame {
             .addGroup(jPLoginLayout.createSequentialGroup()
                 .addGroup(jPLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPLoginLayout.createSequentialGroup()
-                        .addGap(295, 295, 295)
-                        .addComponent(jLabel1))
-                    .addGroup(jPLoginLayout.createSequentialGroup()
-                        .addGap(232, 232, 232)
+                        .addGap(218, 218, 218)
                         .addGroup(jPLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLContra)
-                            .addComponent(jLRut, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
-                            .addComponent(txtCorreo)
+                            .addComponent(jLRut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
                             .addComponent(txtContraLog)))
                     .addGroup(jPLoginLayout.createSequentialGroup()
-                        .addGap(307, 307, 307)
+                        .addGap(272, 272, 272)
+                        .addComponent(jLabel1))
+                    .addGroup(jPLoginLayout.createSequentialGroup()
+                        .addGap(279, 279, 279)
                         .addComponent(btnLog)))
-                .addContainerGap(312, Short.MAX_VALUE))
+                .addContainerGap(218, Short.MAX_VALUE))
         );
         jPLoginLayout.setVerticalGroup(
             jPLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPLoginLayout.createSequentialGroup()
-                .addGap(155, 155, 155)
+                .addGap(160, 160, 160)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jLRut)
@@ -102,7 +103,7 @@ public class LoginMain extends javax.swing.JFrame {
                 .addComponent(txtContraLog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnLog)
-                .addContainerGap(256, Short.MAX_VALUE))
+                .addContainerGap(185, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -111,8 +112,7 @@ public class LoginMain extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(45, 45, 45))
+                .addComponent(jPLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,12 +153,17 @@ public class LoginMain extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        try {
+            FlatOneDarkIJTheme.setup();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
         java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
             public void run() {
                 new LoginMain().setVisible(true);
             }
         });
+    
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
