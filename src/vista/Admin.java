@@ -2,10 +2,6 @@ package vista;
 
 import com.formdev.flatlaf.intellijthemes.FlatCyanLightIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatOneDarkIJTheme;
-import java.awt.Image;
-import java.io.IOException;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -14,7 +10,6 @@ public class Admin extends javax.swing.JFrame {
 
     private LoginMain loginR;
 
-    
     public Admin(LoginMain login) {
         initComponents();
         loginR = login;
@@ -23,15 +18,13 @@ public class Admin extends javax.swing.JFrame {
             UIManager.setLookAndFeel(new FlatOneDarkIJTheme());
             SwingUtilities.updateComponentTreeUI(this);
 
-            Image image = getImage("ProyectoGrupalPOO/src/Iconos/LigthOffHaven.png");
-            jLabel10.setIcon(new ImageIcon(image));
         } catch (UnsupportedLookAndFeelException ex) {
             ex.printStackTrace();
         }
     }
 
     private void cambiarTemaEImagen() {
-       
+
         if (UIManager.getLookAndFeel().getClass().equals(FlatOneDarkIJTheme.class)) {
             try {
                 UIManager.setLookAndFeel(new FlatCyanLightIJTheme());
@@ -46,25 +39,6 @@ public class Admin extends javax.swing.JFrame {
             }
         }
 
-        
-        SwingUtilities.updateComponentTreeUI(this);
-
-       
-        Image image = getImage(
-                UIManager.getLookAndFeel().getClass().equals(FlatOneDarkIJTheme.class)
-                        ? "ProyectoGrupalPOO/src/Iconos/LigthOffHaven.png"
-                        : "ProyectoGrupalPOO/src/Iconos/LigthOnHaven.png"
-        );
-        jLabel10.setIcon(new ImageIcon(image));
-    }
-
-    private Image getImage(String path) {
-        try {
-            return ImageIO.read(getClass().getResource(path));
-        } catch (IOException ex) {
-            
-            return null;
-        }
     }
 
     @SuppressWarnings("unchecked")
@@ -574,7 +548,7 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTotalVentActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-           cambiarTemaEImagen();
+        cambiarTemaEImagen();
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void comboEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboEmpleadoActionPerformed
