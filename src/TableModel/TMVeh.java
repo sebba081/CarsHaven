@@ -38,20 +38,14 @@ public class TMVeh extends AbstractTableModel {
         Vehiculo vehiculo = listaDeVehiculos.get(rowIndex);
         Tipo tipo = vehiculo.buscarTipoPorId(listaTipos);
 
-        switch (columnIndex) {
-            case 0 ->
-                vehiculo.getId();
-            case 1 ->
-                vehiculo.getMarca();
-            case 2 ->
-                vehiculo.getModelo();
-            case 3 ->
-                vehiculo.getPrecio();
-            case 4 ->
-                tipo.getTipo();
-            default ->
-                "N/A";
-        }
+        return switch (columnIndex) {
+            case 0 -> vehiculo.getId();
+            case 1 -> vehiculo.getMarca();
+            case 2 -> vehiculo.getModelo();
+            case 3 -> vehiculo.getPrecio();
+            case 4 -> (tipo != null) ? tipo.getTipo() : "N/A";
+            default -> "N/A";
+        };
     }
 
     @Override

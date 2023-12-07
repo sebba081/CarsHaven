@@ -573,6 +573,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Cerrar Sesion"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCerraAdmActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
