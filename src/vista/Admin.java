@@ -544,7 +544,7 @@ public class Admin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEliminarSecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarSecActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnEliminarSecActionPerformed
 
     private void btnCrearAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearAutoActionPerformed
@@ -561,7 +561,7 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void comboEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboEmpleadoActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_comboEmpleadoActionPerformed
 
     private void btnCerraAdmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerraAdmActionPerformed
