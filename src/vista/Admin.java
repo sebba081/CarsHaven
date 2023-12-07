@@ -2,12 +2,18 @@ package vista;
 
 import com.formdev.flatlaf.intellijthemes.FlatCyanLightIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatOneDarkIJTheme;
+import db.*;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import modelo.Persona;
+import modelo.Usuario;
 
 public class Admin extends javax.swing.JFrame {
 
+    private DataPer datap;
+    private DataVeh datav;
+    private DataUsu datau;
     private LoginMain loginR;
 
     public Admin(LoginMain login) {
@@ -105,6 +111,11 @@ public class Admin extends javax.swing.JFrame {
         comboCodigo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btnCrear.setText("Crear");
+        btnCrear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearActionPerformed(evt);
+            }
+        });
 
         btnBack.setText("Atras");
 
@@ -201,6 +212,11 @@ public class Admin extends javax.swing.JFrame {
         jLabel9.setText("ID");
 
         btnGuardarEmp.setText("Guardar");
+        btnGuardarEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarEmpActionPerformed(evt);
+            }
+        });
 
         btnVolver.setText("Volver");
 
@@ -372,7 +388,7 @@ public class Admin extends javax.swing.JFrame {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jToggleButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCerraAdm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -555,9 +571,66 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_comboEmpleadoActionPerformed
 
     private void btnCerraAdmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerraAdmActionPerformed
-                diaVehiculo.setVisible(true);
-                diaVehiculo.setSize(610, 226);
+        diaVehiculo.setVisible(true);
+        diaVehiculo.setSize(610, 226);
     }//GEN-LAST:event_btnCerraAdmActionPerformed
+
+    private void btnGuardarEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarEmpActionPerformed
+        try {
+            Persona p = new Persona();
+            Usuario u = new Usuario();
+
+            String nombre = txtAddName.getText();
+            String rut = txt_rut.getText();
+            String correo = txtAddCorreo.getText();
+            String contra = txtAddContr.getText();
+
+            p.setNombre(nombre);
+            p.setRut(rut);
+            p.setCorreo(correo);
+            u.setCorreo(correo);
+            u.setContreseña(contra);
+            //u.setTipoUsuario();
+
+            datau.insertarUsuario(u);
+            datap.insertarPersona(p);
+            JOptionPane.showMessageDialog(null, "!El empleado a sido registrado con exito!");
+        } catch (SQLException e) {
+        }
+// TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardarEmpActionPerformed
+
+    private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
+        int precio = 0;
+        
+        try {
+            Vehiculo v = new Vehiculo();
+
+            String marca = txt_marcaAuto.getText();
+            String modelo = txt_modeloAuto.getText();
+            precio = Integer.parseInt(txt_precioAuto.getText());
+            
+            
+            Object selectedItem = comboTipo.getSelectedItem();
+            if (selectedItem != null) {
+                String selectedString = selectedItem.toString();
+                System.out.println("Valor Seleccionado" + selectedItem);
+            } else {
+                System.out.println("No se a seleccionado ningun valor");
+            }
+            
+            
+            v.setMarca(marca);
+            v.setModelo(modelo);
+            v.setPrecio(precio);
+            //v.setTipo_id_fk((int) comboTipo.getSelectedItem());
+            
+            datav.insertarVehiculo(v);
+        } catch (SQLException e) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, e);
+        }
+    // TODO add your handling code here:
+    }//GEN-LAST:event_btnCrearActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActable;
