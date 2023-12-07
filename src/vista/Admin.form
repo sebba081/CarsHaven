@@ -544,7 +544,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jToggleButton1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                          <Component id="havenLogo" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="256" max="-2" attributes="0"/>
                           <Component id="btnCerraAdm" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
@@ -563,14 +563,14 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel10" min="-2" pref="91" max="-2" attributes="0"/>
+                          <Component id="havenLogo" min="-2" pref="91" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="jLabel10">
+                <Component class="javax.swing.JLabel" name="havenLogo">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/Iconos/LightOnHaven.png"/>
@@ -730,11 +730,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Crear Vehiculo"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCrearAutoActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnCrearEmpleados">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Crear Empleados"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCrearEmpleadosActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnTotalVent">
               <Properties>

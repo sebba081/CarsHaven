@@ -81,7 +81,7 @@ public class Admin extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
+        havenLogo = new javax.swing.JLabel();
         btnCerraAdm = new javax.swing.JButton();
         jToggleButton1 = new javax.swing.JToggleButton();
         jPanel5 = new javax.swing.JPanel();
@@ -340,7 +340,7 @@ public class Admin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/LightOnHaven.png"))); // NOI18N
+        havenLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/LightOnHaven.png"))); // NOI18N
 
         btnCerraAdm.setText("Cerrar Sesion");
         btnCerraAdm.addActionListener(new java.awt.event.ActionListener() {
@@ -364,7 +364,7 @@ public class Admin extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jToggleButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel10)
+                .addComponent(havenLogo)
                 .addGap(256, 256, 256)
                 .addComponent(btnCerraAdm)
                 .addGap(26, 26, 26))
@@ -379,7 +379,7 @@ public class Admin extends javax.swing.JFrame {
                 .addGap(59, 59, 59))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(havenLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -449,8 +449,18 @@ public class Admin extends javax.swing.JFrame {
         });
 
         btnCrearAuto.setText("Crear Vehiculo");
+        btnCrearAuto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearAutoActionPerformed(evt);
+            }
+        });
 
         btnCrearEmpleados.setText("Crear Empleados");
+        btnCrearEmpleados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearEmpleadosActionPerformed(evt);
+            }
+        });
 
         btnTotalVent.setText("Total Ventas");
         btnTotalVent.addActionListener(new java.awt.event.ActionListener() {
@@ -538,7 +548,7 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarSecActionPerformed
 
     private void btnCrearAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearAutoActionPerformed
-
+        
     }//GEN-LAST:event_btnCrearAutoActionPerformed
 
 
@@ -558,6 +568,10 @@ public class Admin extends javax.swing.JFrame {
                 diaVehiculo.setVisible(true);
                 diaVehiculo.setSize(610, 226);
     }//GEN-LAST:event_btnCerraAdmActionPerformed
+
+    private void btnCrearEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearEmpleadosActionPerformed
+        
+    }//GEN-LAST:event_btnCrearEmpleadosActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActable;
@@ -579,8 +593,8 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JDialog diaEmpleado;
     private javax.swing.JDialog diaVehiculo;
     private javax.swing.JDialog diaVentas;
+    private javax.swing.JLabel havenLogo;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
