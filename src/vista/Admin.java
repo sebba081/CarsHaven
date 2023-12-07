@@ -538,8 +538,7 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarSecActionPerformed
 
     private void btnCrearAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearAutoActionPerformed
-        diaVehiculo.setVisible(true);
-        diaVehiculo.setSize(610, 226);
+
     }//GEN-LAST:event_btnCrearAutoActionPerformed
 
 
@@ -554,6 +553,11 @@ public class Admin extends javax.swing.JFrame {
     private void comboEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboEmpleadoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboEmpleadoActionPerformed
+
+    private void btnCerraAdmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerraAdmActionPerformed
+                diaVehiculo.setVisible(true);
+                diaVehiculo.setSize(610, 226);
+    }//GEN-LAST:event_btnCerraAdmActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActable;
