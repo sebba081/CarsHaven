@@ -3,14 +3,19 @@ package vista;
 import com.formdev.flatlaf.intellijthemes.FlatCyanLightIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatOneDarkIJTheme;
 import db.*;
+//import java.lang.System.Logger;
+//import java.lang.System.Logger.Level;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import modelo.Persona;
 import modelo.Usuario;
 import modelo.Vehiculo;
+import java.sql.SQLException;
 
 public class Admin extends javax.swing.JFrame {
+
     private DataPer datap;
     private DataVeh datav;
     private DataUsu datau;
@@ -602,11 +607,11 @@ public class Admin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEliminarSecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarSecActionPerformed
-        
+
     }//GEN-LAST:event_btnEliminarSecActionPerformed
 
     private void btnCrearAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearAutoActionPerformed
-        
+
     }//GEN-LAST:event_btnCrearAutoActionPerformed
 
 
@@ -619,57 +624,54 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void comboEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboEmpleadoActionPerformed
-       
+
     }//GEN-LAST:event_comboEmpleadoActionPerformed
 
     private void btnCerraAdmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerraAdmActionPerformed
-                diaVehiculo.setVisible(true);
-                diaVehiculo.setSize(610, 226);
+        diaVehiculo.setVisible(true);
+        diaVehiculo.setSize(610, 226);
     }//GEN-LAST:event_btnCerraAdmActionPerformed
 
     private void btnCrearEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearEmpleadosActionPerformed
-        
+        diaEmpleado.setVisible(true);
+        diaEmpleado.setSize(700, 300);
     }//GEN-LAST:event_btnCrearEmpleadosActionPerformed
 
     private void btnGuardarEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarEmpActionPerformed
         try {
             Persona p = new Persona();
             Usuario u = new Usuario();
-            
-            
-            
+
             String nombre = txtAddName.getText();
             String rut = txtAddrut.getText();
             String correo = txtAddCorreo.getText();
             String contra = txtAddContr.getText();
-            
-            
+
             p.setNombre(nombre);
             p.setRut(rut);
             p.setCorreo(correo);
             u.setCorreo(correo);
             u.setContreseña(contra);
             //u.setTipoUsuario();
-            
+
             datau.insertarUsuario(u);
             datap.insertarPersona(p);
             JOptionPane.showMessageDialog(null, "¡El empleado a sido registrado con exito!");
         } catch (SQLException e) {
-            
+
         }// TODO add your handling code here:
     }//GEN-LAST:event_btnGuardarEmpActionPerformed
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
         int precio = 0;
-        
+
         try {
             Vehiculo v = new Vehiculo();
 
             String marca = txtMarcaauto.getText();
             String modelo = txtModeloauto.getText();
             precio = Integer.parseInt(txtPrecioauto.getText());
-            
-            
+
             Object selectedItem = comboTipo.getSelectedItem();
             if (selectedItem != null) {
                 String selectedString = selectedItem.toString();
@@ -677,16 +679,15 @@ public class Admin extends javax.swing.JFrame {
             } else {
                 System.out.println("No se a seleccionado ningun valor");
             }
-            
-            
+
             v.setMarca(marca);
             v.setModelo(modelo);
             v.setPrecio(precio);
             //v.setTipo_id_fk((int) comboTipo.getSelectedItem());
-            
+
             datav.insertarVehiculo(v);
         } catch (SQLException e) {
-            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, e);
+            //Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, e);
         }// TODO add your handling code here:
     }//GEN-LAST:event_btnCrearActionPerformed
 
