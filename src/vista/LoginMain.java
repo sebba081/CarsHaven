@@ -7,6 +7,7 @@ package vista;
 import com.formdev.flatlaf.intellijthemes.FlatOneDarkIJTheme;
 import db.Conexion;
 import db.DataUsu;
+import java.awt.HeadlessException;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
@@ -146,7 +147,7 @@ public class LoginMain extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(this, "Datos incorrectos, por favor revisar.");
             }
-        } catch (Exception e) {
+        } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(this, "Error al iniciar sesión, pruebe otra vez.");
         }
 
