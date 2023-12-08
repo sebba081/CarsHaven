@@ -116,6 +116,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Atras"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBackActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>
@@ -400,6 +403,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Volver"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVolverTotalActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnActable">
           <Properties>

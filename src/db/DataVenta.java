@@ -82,4 +82,14 @@ public class DataVenta {
             return null;
         }
     }
+    
+    public ArrayList <Ventas> ObtenerTotalMes()throws SQLException{
+        String query = "SELECT id_ventas, cantidad, "
+                + "(SELECT SUM(cantidad) FROM ventas AS v2 WHERE v2.id_ventas <= v1.id_ventas) AS suma_acumuladora"
+                + "FROM ventas AS v1 ORDEN BY id_ventas";
+        
+        ResultSet rs = con.ejecutarSelect(query);
+        ArrayList<Ventas> resultados = new ArrayList<>();
+        return null;
+    }
 }

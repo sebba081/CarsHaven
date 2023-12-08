@@ -13,18 +13,18 @@ import modelo.Persona;
 import modelo.Usuario;
 import modelo.Vehiculo;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.JLabel;
+import modelo.Ventas;
 
 public class Admin extends javax.swing.JFrame {
 
     private DataPer datap;
     private DataVeh datav;
     private DataUsu datau;
+    private DataVenta dataVe;
     private LoginMain loginR;
 
+//    private JLabel labelTdMes;
     public Admin(LoginMain login) {
         initComponents();
         loginR = login;
@@ -32,8 +32,6 @@ public class Admin extends javax.swing.JFrame {
         try {
             UIManager.setLookAndFeel(new FlatOneDarkIJTheme());
             SwingUtilities.updateComponentTreeUI(this);
-            updateTableV();
-            updateTableE();
 
         } catch (UnsupportedLookAndFeelException ex) {
             ex.printStackTrace();
@@ -107,7 +105,7 @@ public class Admin extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         tPaneAdm = new javax.swing.JTabbedPane();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTableV = new javax.swing.JTable();
+        jTable2 = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
@@ -126,6 +124,11 @@ public class Admin extends javax.swing.JFrame {
         });
 
         btnBack.setText("Atras");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Marca");
 
@@ -315,6 +318,11 @@ public class Admin extends javax.swing.JFrame {
         jLabel11.setText("CARS HAVEN");
 
         btnVolverTotal.setText("Volver");
+        btnVolverTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverTotalActionPerformed(evt);
+            }
+        });
 
         btnActable.setText("Actualizar");
         btnActable.addActionListener(new java.awt.event.ActionListener() {
@@ -465,7 +473,7 @@ public class Admin extends javax.swing.JFrame {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jTableV.setModel(new javax.swing.table.DefaultTableModel(
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -476,7 +484,7 @@ public class Admin extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane4.setViewportView(jTableV);
+        jScrollPane4.setViewportView(jTable2);
 
         tPaneAdm.addTab("Vehiculos", jScrollPane4);
 
@@ -617,12 +625,14 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarSecActionPerformed
 
     private void btnCrearAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearAutoActionPerformed
-
+        diaVehiculo.setVisible(true);
+        diaVehiculo.setSize(700, 300);
     }//GEN-LAST:event_btnCrearAutoActionPerformed
 
 
     private void btnTotalVentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTotalVentActionPerformed
-
+        diaVentas.setVisible(true);
+        diaVentas.setSize(865, 649);
     }//GEN-LAST:event_btnTotalVentActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
@@ -635,12 +645,12 @@ public class Admin extends javax.swing.JFrame {
 
     private void btnCerraAdmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerraAdmActionPerformed
         diaVehiculo.setVisible(true);
-        diaVehiculo.setSize(610, 226);
+        diaVehiculo.setSize(700, 300);
     }//GEN-LAST:event_btnCerraAdmActionPerformed
 
     private void btnCrearEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearEmpleadosActionPerformed
         diaEmpleado.setVisible(true);
-        diaEmpleado.setSize(700, 300);
+        diaEmpleado.setSize(700, 400);
     }//GEN-LAST:event_btnCrearEmpleadosActionPerformed
 
     private void btnGuardarEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarEmpActionPerformed
@@ -700,60 +710,18 @@ public class Admin extends javax.swing.JFrame {
     private void btnActableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActableActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnActableActionPerformed
-    public void updateTableV() {
 
-        try {
-            DataVeh dataVeh = new DataVeh("automotora");  // Asegúrate de que sea la forma correcta de crear una instancia
-            ArrayList<Vehiculo> listaVeh = dataVeh.getVehiculos(); // Crear el modelo de tabla
-            DefaultTableModel modeloTabla = new DefaultTableModel();
-            modeloTabla.addColumn("Marca");
-            modeloTabla.addColumn("Modelo");
-            modeloTabla.addColumn("Precio");
-            modeloTabla.addColumn("Tipo");
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        diaVehiculo.setVisible(false);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBackActionPerformed
 
-            // Llenar el modelo con los datos obtenidos
-            for (Vehiculo vehiculo : listaVeh) {
-                String marca = vehiculo.getMarca();
-                String modelo = vehiculo.getModelo();
-                int precio = vehiculo.getPrecio();
-                int tipo = vehiculo.getTipo_id_fk();
+    private void btnVolverTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverTotalActionPerformed
 
-                modeloTabla.addRow(new Object[]{marca, modelo, precio, tipo});
-            }
+        diaVehiculo.setVisible(false);
+// TODO add your handling code here:
+    }//GEN-LAST:event_btnVolverTotalActionPerformed
 
-            // Establecer el modelo en la tabla
-            jTableV.setModel(modeloTabla);
-        } catch (SQLException ex) {
-            Logger.getLogger(Vendedor.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    public void updateTableE() {
-
-        try {
-            DataUsu dataUsu = new DataUsu("automotora");
-            ArrayList<Usuario> listaUsu= dataUsu.getUsuario();
-
-            DefaultTableModel modeloTabla = new DefaultTableModel();
-            modeloTabla.addColumn("Nombre");
-            modeloTabla.addColumn("Rut");
-            modeloTabla.addColumn("Correo");
-
-            // Llenar el modelo con los datos obtenidos
-            for (Usuario usuario : listaUsu) {
-                String nombre = usuario.getNombre();
-                String rut = usuario.getRut();
-                String correo = usuario.getCorreo();
-
-                modeloTabla.addRow(new Object[]{nombre, rut, correo});
-            }
-
-            // Establecer el modelo en la tabla
-            jTableV.setModel(modeloTabla);
-        } catch (SQLException ex) {
-            Logger.getLogger(Vendedor.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActable;
     private javax.swing.JButton btnBack;
@@ -795,7 +763,7 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTableV;
+    private javax.swing.JTable jTable2;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLabel labelTDMesAnt;
     private javax.swing.JLabel labelTdMes;
@@ -809,4 +777,9 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JTextField txtModeloauto;
     private javax.swing.JTextField txtPrecioauto;
     // End of variables declaration//GEN-END:variables
+
+    private JLabel ventasTotalMes() throws SQLException {
+        dataVe.ObtenerTotalMes();
+        return labelTdMes;
+    }
 }
