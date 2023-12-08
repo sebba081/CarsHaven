@@ -12,7 +12,7 @@ import modelo.Vehiculo;
  */
 public class DataVeh {
     
-    public static ArrayList<Vehiculo> getlistaVeh;
+//    public static ArrayList<Vehiculo> getlistaVeh;
     private final List<Vehiculo> listaVeh;
 
     private Conexion con;
@@ -74,6 +74,7 @@ public class DataVeh {
 
         if (rs.next()) {
             Vehiculo a = new Vehiculo();
+            
             a.setId(Integer.parseInt("ID"));
             a.setMarca(rs.getString("marca"));
             a.setModelo(rs.getString("modelo"));

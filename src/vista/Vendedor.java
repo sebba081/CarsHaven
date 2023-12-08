@@ -28,6 +28,7 @@ public class Vendedor extends javax.swing.JFrame {
      */
     public Vendedor(LoginMain login) {
         initComponents();
+        updateTable();
         loginR = login;
 
     }
@@ -462,7 +463,7 @@ public class Vendedor extends javax.swing.JFrame {
 
     public void updateTable() {
 
-        ArrayList <Vehiculo> listaVeh = DataVeh.getlistaVeh;
+        ArrayList <Vehiculo> listaVeh = new ArrayList<Vehiculo>();
         DefaultTableModel modeloTabla = new DefaultTableModel();
         
         modeloTabla.addColumn("Marca");

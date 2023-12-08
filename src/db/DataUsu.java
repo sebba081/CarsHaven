@@ -7,6 +7,7 @@ package db;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import modelo.Usuario;
 
 /**
  *
@@ -22,6 +23,14 @@ public class DataUsu {
      */
     public DataUsu(Conexion conexion) {
         this.conn = conexion;
+    }
+    
+    public void insertarUsuario(Usuario u) throws SQLException {
+        String query = "INSERT INTO usuarios VALUES('"
+                + u.getCorreo() + "','"
+                + u.getContreseña() + "','"
+                + u.getTipoUsuario()+  ")";
+        conn.ejecutarQuery(query);
     }
 
     // Método para autenticar un usuario
