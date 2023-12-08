@@ -13,14 +13,18 @@ import modelo.Persona;
 import modelo.Usuario;
 import modelo.Vehiculo;
 import java.sql.SQLException;
+import javax.swing.JLabel;
+import modelo.Ventas;
 
 public class Admin extends javax.swing.JFrame {
 
     private DataPer datap;
     private DataVeh datav;
     private DataUsu datau;
+    private DataVenta dataVe;
     private LoginMain loginR;
 
+//    private JLabel labelTdMes;
     public Admin(LoginMain login) {
         initComponents();
         loginR = login;
@@ -120,6 +124,11 @@ public class Admin extends javax.swing.JFrame {
         });
 
         btnBack.setText("Atras");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Marca");
 
@@ -309,6 +318,11 @@ public class Admin extends javax.swing.JFrame {
         jLabel11.setText("CARS HAVEN");
 
         btnVolverTotal.setText("Volver");
+        btnVolverTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverTotalActionPerformed(evt);
+            }
+        });
 
         btnActable.setText("Actualizar");
         btnActable.addActionListener(new java.awt.event.ActionListener() {
@@ -611,12 +625,14 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarSecActionPerformed
 
     private void btnCrearAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearAutoActionPerformed
-
+        diaVehiculo.setVisible(true);
+        diaVehiculo.setSize(700, 300);
     }//GEN-LAST:event_btnCrearAutoActionPerformed
 
 
     private void btnTotalVentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTotalVentActionPerformed
-
+        diaVentas.setVisible(true);
+        diaVentas.setSize(865, 649);
     }//GEN-LAST:event_btnTotalVentActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
@@ -629,12 +645,12 @@ public class Admin extends javax.swing.JFrame {
 
     private void btnCerraAdmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerraAdmActionPerformed
         diaVehiculo.setVisible(true);
-        diaVehiculo.setSize(610, 226);
+        diaVehiculo.setSize(700, 300);
     }//GEN-LAST:event_btnCerraAdmActionPerformed
 
     private void btnCrearEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearEmpleadosActionPerformed
         diaEmpleado.setVisible(true);
-        diaEmpleado.setSize(700, 300);
+        diaEmpleado.setSize(700, 400);
     }//GEN-LAST:event_btnCrearEmpleadosActionPerformed
 
     private void btnGuardarEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarEmpActionPerformed
@@ -695,6 +711,17 @@ public class Admin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnActableActionPerformed
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        diaVehiculo.setVisible(false);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnVolverTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverTotalActionPerformed
+
+        diaVehiculo.setVisible(false);
+// TODO add your handling code here:
+    }//GEN-LAST:event_btnVolverTotalActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActable;
     private javax.swing.JButton btnBack;
@@ -750,4 +777,9 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JTextField txtModeloauto;
     private javax.swing.JTextField txtPrecioauto;
     // End of variables declaration//GEN-END:variables
+
+    private JLabel ventasTotalMes() throws SQLException {
+        dataVe.ObtenerTotalMes();
+        return labelTdMes;
+    }
 }
