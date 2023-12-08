@@ -12,7 +12,6 @@ import modelo.Vehiculo;
  */
 public class DataVeh {
     
-//    public static ArrayList<Vehiculo> getlistaVeh;
     private final List<Vehiculo> listaVeh;
 
     private Conexion con;

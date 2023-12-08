@@ -5,7 +5,10 @@
 package vista;
 
 import db.DataVeh;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import modelo.Vehiculo;
 
@@ -16,6 +19,9 @@ import modelo.Vehiculo;
 public class Vendedor extends javax.swing.JFrame {
 
     private LoginMain loginR;
+    private DataVeh dataV;
+    
+    
 
     /**
      * Creates new form MenuAdmin
@@ -69,12 +75,12 @@ public class Vendedor extends javax.swing.JFrame {
         btnCerrarsec = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        comboTipo = new javax.swing.JComboBox<>();
-        comboMarca = new javax.swing.JComboBox<>();
-        comboModel = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        txt_tipo = new javax.swing.JTextField();
+        txt_marca = new javax.swing.JTextField();
+        txt_modelo = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         vehiculoTable = new javax.swing.JTable();
         btnEntrarventa = new javax.swing.JButton();
@@ -293,13 +299,6 @@ public class Vendedor extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        comboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        comboMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        comboMarca.setSelectedIndex(1);
-
-        comboModel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel1.setText("Tipo de vehiculo");
 
         jLabel2.setText("Marca");
@@ -312,18 +311,18 @@ public class Vendedor extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(comboMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(137, 137, 137)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_marca, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(243, 243, 243)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(comboModel, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52))
+                    .addComponent(txt_modelo, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(179, 179, 179))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -334,12 +333,11 @@ public class Vendedor extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(comboMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(comboModel))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_marca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_modelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         vehiculoTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -449,26 +447,28 @@ public class Vendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverventaActionPerformed
 
     private void btnActuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActuActionPerformed
-        updateTable();
-// TODO add your handling code here:
+        
+        dataV.insertarVehiculo(a);
+        this.updateTable();
+        
     }//GEN-LAST:event_btnActuActionPerformed
 
     public void updateTable() {
 
-        ArrayList <Vehiculo> listaVeh = new ArrayList<Vehiculo>();
+        ArrayList<Vehiculo> listaVeh = new ArrayList<Vehiculo>();
         DefaultTableModel modeloTabla = new DefaultTableModel();
-        
+
         modeloTabla.addColumn("Marca");
         modeloTabla.addColumn("Modelo");
         modeloTabla.addColumn("Precio");
         modeloTabla.addColumn("Tipo");
-        
+
         for (Vehiculo vehiculo : listaVeh) {
             String marca = vehiculo.getMarca();
             String modelo = vehiculo.getModelo();
             int precio = vehiculo.getPrecio();
             int tipo = vehiculo.getTipo_id_fk();
-            
+
             modeloTabla.addRow(new Object[]{marca, modelo, precio, tipo});
         }
         vehiculoTable.setModel(modeloTabla);
@@ -481,11 +481,8 @@ public class Vendedor extends javax.swing.JFrame {
     private javax.swing.JButton btnVolverventa;
     private javax.swing.JCheckBox checkClientenuevo;
     private javax.swing.JComboBox<String> comboIDven;
-    private javax.swing.JComboBox<String> comboMarca;
     private javax.swing.JComboBox<String> comboMarcaVen;
-    private javax.swing.JComboBox<String> comboModel;
     private javax.swing.JComboBox<String> comboModelVen;
-    private javax.swing.JComboBox<String> comboTipo;
     private javax.swing.JComboBox<String> comboTipoVen;
     private javax.swing.JDialog diaVenta;
     private javax.swing.JLabel jLabel1;
@@ -514,6 +511,9 @@ public class Vendedor extends javax.swing.JFrame {
     private javax.swing.JTextField txtDireccionclien;
     private javax.swing.JTextField txtNombreClie;
     private javax.swing.JTextField txtRutClien;
+    private javax.swing.JTextField txt_marca;
+    private javax.swing.JTextField txt_modelo;
+    private javax.swing.JTextField txt_tipo;
     private javax.swing.JTable vehiculoTable;
     // End of variables declaration//GEN-END:variables
 }
