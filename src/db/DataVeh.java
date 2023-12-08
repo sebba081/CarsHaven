@@ -6,12 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import modelo.Vehiculo;
 
-/**
- *
- * @author antho
- */
 public class DataVeh {
-    
+
     private final List<Vehiculo> listaVeh;
 
     private Conexion con;
@@ -23,22 +19,22 @@ public class DataVeh {
 
     public void insertarVehiculo(Vehiculo a) throws SQLException {
         String query = "INSERT INTO vehiculos VALUES('"
-                + a.getId()+ "','"
+                + a.getId() + "','"
                 + a.getMarca() + "','"
                 + a.getModelo() + "','"
-                + a.getPrecio()+ "',"
-                + a.getTipo_id_fk()+ ")";
+                + a.getPrecio() + "',"
+                + a.getTipo_id_fk() + ")";
         con.ejecutarQuery(query);
     }
 
     public void ActualizarVehiculo(Vehiculo a) throws SQLException {
         String query = "UPDATE vehiculos SET "
-                + "ID = '" + a.getId()+ "' , "
+                + "ID = '" + a.getId() + "' , "
                 + "marca = '" + a.getMarca() + "',"
                 + "modelo = '" + a.getModelo() + "', "
-                + "Precio = '" + a.getPrecio()+ "',"
-                + "Tipo id = '" + a.getTipo_id_fk()+ "',"
-                + "WHERE patente = '" + a.getId()+ "'";
+                + "Precio = '" + a.getPrecio() + "',"
+                + "Tipo id = '" + a.getTipo_id_fk() + "' "
+                + "WHERE patente = '" + a.getId() + "'";
         con.ejecutarQuery(query);
     }
 
@@ -50,21 +46,20 @@ public class DataVeh {
     }
 
     public ArrayList<Vehiculo> getVehiculos() throws SQLException {
-
         String sql = "SELECT * FROM vehiculos;";
         ResultSet rs = con.ejecutarSelect(sql);
         ArrayList<Vehiculo> autoList = new ArrayList<>();
 
         while (rs.next()) {
             Vehiculo a = new Vehiculo();
-            a.setId(Integer.parseInt("ID"));
+            a.setId(rs.getInt("ID"));
             a.setMarca(rs.getString("marca"));
             a.setModelo(rs.getString("modelo"));
-            a.setPrecio(Integer.parseInt("precio"));
-            a.setTipo_id_fk(Integer.parseInt("Tipo id"));
+            a.setPrecio(rs.getInt("precio"));
+            a.setTipo_id_fk(rs.getInt("Tipo_id_fk"));
             autoList.add(a);
         }
-        return null;
+        return autoList;
     }
 
     public Vehiculo getVehiculoByid(String id) throws SQLException {
@@ -73,12 +68,12 @@ public class DataVeh {
 
         if (rs.next()) {
             Vehiculo a = new Vehiculo();
-            
-            a.setId(Integer.parseInt("ID"));
+
+            a.setId(rs.getInt("ID"));
             a.setMarca(rs.getString("marca"));
             a.setModelo(rs.getString("modelo"));
-            a.setPrecio(Integer.parseInt("precio"));
-            a.setTipo_id_fk(Integer.parseInt("Tipo_id"));
+            a.setPrecio(rs.getInt("precio"));
+            a.setTipo_id_fk(rs.getInt("Tipo_id"));
             con.CLOSE();
             return a;
         } else {
@@ -87,3 +82,4 @@ public class DataVeh {
         }
     }
 }
+

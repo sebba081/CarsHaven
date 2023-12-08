@@ -13,6 +13,10 @@ import modelo.Persona;
 import modelo.Usuario;
 import modelo.Vehiculo;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 public class Admin extends javax.swing.JFrame {
 
@@ -28,6 +32,8 @@ public class Admin extends javax.swing.JFrame {
         try {
             UIManager.setLookAndFeel(new FlatOneDarkIJTheme());
             SwingUtilities.updateComponentTreeUI(this);
+            updateTableV();
+            updateTableE();
 
         } catch (UnsupportedLookAndFeelException ex) {
             ex.printStackTrace();
@@ -101,7 +107,7 @@ public class Admin extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         tPaneAdm = new javax.swing.JTabbedPane();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jTableV = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
@@ -459,7 +465,7 @@ public class Admin extends javax.swing.JFrame {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTableV.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -470,7 +476,7 @@ public class Admin extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane4.setViewportView(jTable2);
+        jScrollPane4.setViewportView(jTableV);
 
         tPaneAdm.addTab("Vehiculos", jScrollPane4);
 
@@ -694,7 +700,60 @@ public class Admin extends javax.swing.JFrame {
     private void btnActableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActableActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnActableActionPerformed
+    public void updateTableV() {
 
+        try {
+            DataVeh dataVeh = new DataVeh("automotora");  // Asegúrate de que sea la forma correcta de crear una instancia
+            ArrayList<Vehiculo> listaVeh = dataVeh.getVehiculos(); // Crear el modelo de tabla
+            DefaultTableModel modeloTabla = new DefaultTableModel();
+            modeloTabla.addColumn("Marca");
+            modeloTabla.addColumn("Modelo");
+            modeloTabla.addColumn("Precio");
+            modeloTabla.addColumn("Tipo");
+
+            // Llenar el modelo con los datos obtenidos
+            for (Vehiculo vehiculo : listaVeh) {
+                String marca = vehiculo.getMarca();
+                String modelo = vehiculo.getModelo();
+                int precio = vehiculo.getPrecio();
+                int tipo = vehiculo.getTipo_id_fk();
+
+                modeloTabla.addRow(new Object[]{marca, modelo, precio, tipo});
+            }
+
+            // Establecer el modelo en la tabla
+            jTableV.setModel(modeloTabla);
+        } catch (SQLException ex) {
+            Logger.getLogger(Vendedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void updateTableE() {
+
+        try {
+            DataUsu dataUsu = new DataUsu("automotora");
+            ArrayList<Usuario> listaUsu= dataUsu.getUsuario();
+
+            DefaultTableModel modeloTabla = new DefaultTableModel();
+            modeloTabla.addColumn("Nombre");
+            modeloTabla.addColumn("Rut");
+            modeloTabla.addColumn("Correo");
+
+            // Llenar el modelo con los datos obtenidos
+            for (Usuario usuario : listaUsu) {
+                String nombre = usuario.getNombre();
+                String rut = usuario.getRut();
+                String correo = usuario.getCorreo();
+
+                modeloTabla.addRow(new Object[]{nombre, rut, correo});
+            }
+
+            // Establecer el modelo en la tabla
+            jTableV.setModel(modeloTabla);
+        } catch (SQLException ex) {
+            Logger.getLogger(Vendedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActable;
     private javax.swing.JButton btnBack;
@@ -736,7 +795,7 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTableV;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLabel labelTDMesAnt;
     private javax.swing.JLabel labelTdMes;

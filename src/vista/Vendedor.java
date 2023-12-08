@@ -20,8 +20,6 @@ public class Vendedor extends javax.swing.JFrame {
 
     private LoginMain loginR;
     private DataVeh dataV;
-    
-    
 
     /**
      * Creates new form MenuAdmin
@@ -30,7 +28,6 @@ public class Vendedor extends javax.swing.JFrame {
      */
     public Vendedor(LoginMain login) {
         initComponents();
-        updateTable();
         loginR = login;
 
     }
@@ -447,31 +444,35 @@ public class Vendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverventaActionPerformed
 
     private void btnActuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActuActionPerformed
-        
-        dataV.insertarVehiculo(a);
-        this.updateTable();
-        
+        updateTableV();
     }//GEN-LAST:event_btnActuActionPerformed
 
-    public void updateTable() {
+    public void updateTableV() {
 
-        ArrayList<Vehiculo> listaVeh = new ArrayList<Vehiculo>();
-        DefaultTableModel modeloTabla = new DefaultTableModel();
-
-        modeloTabla.addColumn("Marca");
-        modeloTabla.addColumn("Modelo");
-        modeloTabla.addColumn("Precio");
-        modeloTabla.addColumn("Tipo");
-
-        for (Vehiculo vehiculo : listaVeh) {
-            String marca = vehiculo.getMarca();
-            String modelo = vehiculo.getModelo();
-            int precio = vehiculo.getPrecio();
-            int tipo = vehiculo.getTipo_id_fk();
-
-            modeloTabla.addRow(new Object[]{marca, modelo, precio, tipo});
+        try {
+            DataVeh dataVeh = new DataVeh("automotora");  // Asegúrate de que sea la forma correcta de crear una instancia
+            ArrayList<Vehiculo> listaVeh = dataVeh.getVehiculos(); // Crear el modelo de tabla
+                    DefaultTableModel modeloTabla = new DefaultTableModel();
+                    modeloTabla.addColumn("Marca");
+                    modeloTabla.addColumn("Modelo");
+                    modeloTabla.addColumn("Precio");
+                    modeloTabla.addColumn("Tipo");
+                    
+                    // Llenar el modelo con los datos obtenidos
+                    for (Vehiculo vehiculo : listaVeh) {
+                        String marca = vehiculo.getMarca(); 
+                        String modelo = vehiculo.getModelo();
+                        int precio = vehiculo.getPrecio();
+                        int tipo = vehiculo.getTipo_id_fk();
+                        
+                        modeloTabla.addRow(new Object[]{marca, modelo, precio, tipo});
+                    }
+                    
+                    // Establecer el modelo en la tabla
+                    vehiculoTable.setModel(modeloTabla);
+        } catch (SQLException ex) {
+            Logger.getLogger(Vendedor.class.getName()).log(Level.SEVERE, null, ex);
         }
-        vehiculoTable.setModel(modeloTabla);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActu;

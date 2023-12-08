@@ -7,7 +7,9 @@ package db;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import modelo.Usuario;
+import modelo.Vehiculo;
 
 /**
  *
@@ -16,6 +18,7 @@ import modelo.Usuario;
 public class DataUsu {
 
     private Conexion conn;
+    private ArrayList<Object> listaUsu;
 
     /**
      *
@@ -24,12 +27,17 @@ public class DataUsu {
     public DataUsu(Conexion conexion) {
         this.conn = conexion;
     }
-    
+
+    public DataUsu(String db) throws SQLException {
+        conn = new Conexion(db);
+        this.listaUsu = new ArrayList<>();
+    }
+
     public void insertarUsuario(Usuario u) throws SQLException {
         String query = "INSERT INTO usuarios VALUES('"
                 + u.getCorreo() + "','"
                 + u.getContreseña() + "','"
-                + u.getTipoUsuario()+  ")";
+                + u.getTipoUsuario() + ")";
         conn.ejecutarQuery(query);
     }
 
@@ -62,10 +70,10 @@ public class DataUsu {
     }
 
     public String getUserTipo(String email) throws SQLException {
-        String query = "SELECT tipo_usuario FROM usuarios u " +
-                       "INNER JOIN tipo_usuario tu ON u.id_tipo_usuario = tu.id " +
-                       "WHERE u.email = ?";
-        
+        String query = "SELECT tipo_usuario FROM usuarios u "
+                + "INNER JOIN tipo_usuario tu ON u.id_tipo_usuario = tu.id "
+                + "WHERE u.email = ?";
+
         try (PreparedStatement preparedStatement = conn.prepareStatement(query)) {
             preparedStatement.setString(1, email);
 
@@ -81,4 +89,18 @@ public class DataUsu {
         }
     }
 
+    public ArrayList<Vehiculo> getUsuario() throws SQLException {
+        String sql = "SELECT * FROM vehiculos;";
+        ResultSet rs = conn.ejecutarSelect(sql);
+        ArrayList<Vehiculo> autoList = new ArrayList<>();
+
+        while (rs.next()) {
+            Vehiculo a = new Vehiculo();
+            a.setId(rs.getInt("rut"));
+            a.setMarca(rs.getString("nombre"));
+            a.setModelo(rs.getString("email"));
+            autoList.add(a);
+        }
+        return autoList;
+    }
 }
