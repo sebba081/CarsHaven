@@ -367,6 +367,11 @@ public class Vendedor extends javax.swing.JFrame {
         });
 
         btnActu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/RefreshS.png"))); // NOI18N
+        btnActu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActuActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPPrinciVenLayout = new javax.swing.GroupLayout(jPPrinciVen);
         jPPrinciVen.setLayout(jPPrinciVenLayout);
@@ -396,7 +401,7 @@ public class Vendedor extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addGroup(jPPrinciVenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPPrinciVenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnEntrarventa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnActu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
@@ -441,6 +446,11 @@ public class Vendedor extends javax.swing.JFrame {
         diaVenta.setVisible(false);
 // TODO add your handling code here:
     }//GEN-LAST:event_btnVolverventaActionPerformed
+
+    private void btnActuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActuActionPerformed
+        updateTable();
+// TODO add your handling code here:
+    }//GEN-LAST:event_btnActuActionPerformed
 
     public void updateTable() {
 

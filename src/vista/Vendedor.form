@@ -409,7 +409,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="36" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="btnEntrarventa" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="btnActu" alignment="0" max="32767" attributes="0"/>
                   </Group>
@@ -612,6 +612,9 @@
               <Image iconType="3" name="/Iconos/RefreshS.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnActuActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
