@@ -4,12 +4,8 @@
  */
 package vista;
 
-import TableModel.TMVeh;
 import db.DataVeh;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import modelo.Vehiculo;
 
