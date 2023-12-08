@@ -8,6 +8,9 @@ import TableModel.TMVeh;
 import db.DataVeh;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 import modelo.Vehiculo;
 
 /**
@@ -458,22 +461,24 @@ public class Vendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverventaActionPerformed
 
     public void updateTable() {
-        try {
-            //lista asistencia
-            ArrayList<Vehiculo> listaVeh = DataVeh.getListaDeVehiculos();
-            TMVeh modeloTablaAs = new TMVeh(listaVeh);
-            main_TableAsis.setModel(modeloTablaAs);
-            //lista estudiantes
-            ArrayList<Estudiante> listaEstudiantes = dataAsistencia.getListaDeEstudiantes();
-            EstudianteTM modeloTablaEs = new EstudianteTM(listaEstudiantes);
-            main_TableEstu.setModel(modeloTablaEs);
-            //lista profesor
-            ArrayList<Profesor> listaProfesores = dataAsistencia.getListaDeProfesores();
-            ProfesorTM modeloTablaPro = new ProfesorTM(listaProfesores);
-            main_TableProf.setModel(modeloTablaPro);
-        } catch (SQLException ex) {
 
+        ArrayList <Vehiculo> listaVeh = DataVeh.getlistaVeh;
+        DefaultTableModel modeloTabla = new DefaultTableModel();
+        
+        modeloTabla.addColumn("Marca");
+        modeloTabla.addColumn("Modelo");
+        modeloTabla.addColumn("Precio");
+        modeloTabla.addColumn("Tipo");
+        
+        for (Vehiculo vehiculo : listaVeh) {
+            String marca = vehiculo.getMarca();
+            String modelo = vehiculo.getModelo();
+            int precio = vehiculo.getPrecio();
+            int tipo = vehiculo.getTipo_id_fk();
+            
+            modeloTabla.addRow(new Object[]{marca, modelo, precio, tipo});
         }
+        vehiculoTable.setModel(modeloTabla);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrarsec;
