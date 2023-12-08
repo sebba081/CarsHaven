@@ -159,12 +159,9 @@ public class LoginMain extends javax.swing.JFrame {
         try {
             FlatOneDarkIJTheme.setup();
         } catch (Exception ex) {
-            ex.printStackTrace();
         }
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LoginMain().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new LoginMain().setVisible(true);
         });
     
     }
